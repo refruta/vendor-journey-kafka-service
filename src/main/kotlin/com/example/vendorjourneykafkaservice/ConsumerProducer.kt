@@ -20,13 +20,11 @@ class ConsumerProducer {
     @KafkaListener(topics = ["t3"], groupId = "myGroupId")
     fun getTopics(e: String) :Unit{
         logger.info("In get Topic method with ID:- $e")
-//        println("In consumer $e")
         delayGenerateEvent(e)
     }
 
     fun delayGenerateEvent(c:String){
         logger.info("In delayGenerateEvent with ID:- $c")
-        print(c)
         Thread.sleep(20000)
         kafkaTemplate?.send("t4", c)
     }
